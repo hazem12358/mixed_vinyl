@@ -30,13 +30,14 @@ class VinylController extends AbstractController
         return new Response($html);
     }
 
-    #[Route('/browse/{slug}', name: 'app_browse')]
-    public function browse(string $slug = null): Response
+     #[Route('/browse/{slug}', name: 'app_browse')]
+    public function browse(VinylMixRepository $mixRepository, string $slug = null): Response
     {
         $genre = $slug ? u(str_replace('-', ' ', $slug))->title(true) : null;
-
+        $mixes = $mixRepository->findAll();
         return $this->render('vinyl/browse.html.twig', [
-            'genre' => $genre
+            'genre' => $genre,
+            'mixes' => $mixes,
         ]);
     }
 }

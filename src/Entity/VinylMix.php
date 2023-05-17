@@ -124,14 +124,4 @@ class VinylMix
 
         return $this;
     }
-    #[Route('/browse/{slug}', name: 'app_browse')]
-    public function browse(VinylMixRepository $mixRepository, string $slug = null): Response
-    {
-        $genre = $slug ? u(str_replace('-', ' ', $slug))->title(true) : null;
-        $mixes = $mixRepository->findAll();
-        return $this->render('vinyl/browse.html.twig', [
-            'genre' => $genre,
-            'mixes' => $mixes,
-        ]);
-    }
 }
