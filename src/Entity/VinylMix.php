@@ -13,6 +13,7 @@ class VinylMix
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+   
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -31,6 +32,9 @@ class VinylMix
 
     #[ORM\Column]
     private ?int $votes = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $no = null;
 
     public function getId(): ?int
     {
@@ -105,6 +109,18 @@ class VinylMix
     public function setVotes(int $votes): self
     {
         $this->votes = $votes;
+
+        return $this;
+    }
+
+    public function getNo(): ?string
+    {
+        return $this->no;
+    }
+
+    public function setNo(string $no): self
+    {
+        $this->no = $no;
 
         return $this;
     }
